@@ -1,9 +1,9 @@
-variable "mod-pubname" {
+variable "mod-pubsub" {
   description = "Var passed from root"
   type        = string
 }
 
-variable "mod-privname" {
+variable "mod-prisub" {
   description = "Var passed from root"
   type        = string
 }
