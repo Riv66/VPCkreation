@@ -6,7 +6,7 @@ data "aws_availability_zones" "available" {
 # Create public subnets in the first available availability zone
 
 resource "aws_subnet" "pub" {
-  for_each                                    = var.pubsub # Name - CDIR map
+  for_each                                    = var.mod-pubsub # Name - CDIR map
   cidr_block                                  = each.value
   vpc_id                                      = aws_vpc.vpc.id
   map_public_ip_on_launch                     = true
@@ -22,7 +22,7 @@ resource "aws_subnet" "pub" {
 
 # Create private subnets in the same available availability zone
 resource "aws_subnet" "pri" {
-  for_each                = var.prisub # Name - CDIR map
+  for_each                = var.mod-prisub # Name - CDIR map
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = each.value
   map_public_ip_on_launch = false
@@ -30,7 +30,7 @@ resource "aws_subnet" "pri" {
   tags = {
     tier    = "Private"
     name    = each.key
-    owner   = var.tags["owner"]
-    service = var.tags["service"]
+    owner   = var.mod-tags["owner"]
+    service = var.mod-tags["service"]
   }
 }
