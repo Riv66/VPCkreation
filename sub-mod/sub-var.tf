@@ -1,9 +1,9 @@
 variable "mod-pubsub" {
   description = "Var passed from root"
-  type        = string
+    type        = map(any)
 }
 
 variable "mod-prisub" {
   description = "Var passed from root"
-  type        = string
+    type        = map(any)
 }
