@@ -7,3 +7,7 @@ variable "mod-prisub" {
   description = "Var passed from root"
     type        = map(any)
 }
+variable "mod-tags" {
+  description = "Var passed from root"
+    type        = map(any)
+}
