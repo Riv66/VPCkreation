@@ -5,7 +5,7 @@ data "aws_availability_zones" "available" {
 
 data "aws_vpc" "vpclist" {
 filter {
-    name   = "cdir_block"
+    name   = "cdir-block"
     values = ["10.10.0.0/16"]
   }
 }
