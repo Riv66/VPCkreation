@@ -4,14 +4,10 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_vpc" "vpclist" {
-tags = {
-       owner = "NetOps*"
-    }
-
-/*filter {
-    name   = "tag:owner"
-    values = ["*NetOps*"]
-  }*/
+filter {
+    name   = "cdir_block"
+    values = ["10.10.0.0/16"]
+  }
 }
 
 output "aws_vpc" {
