@@ -12,15 +12,15 @@ data "aws_vpc" "vpclist" {
   vpc_id = "${data.aws_vpc.vpclist.id}"
 }
     
-output "aws_vpc_ids" {
-  value = "${data.aws_vpc_ids.all.ids}"
+output "aws_vpc" {
+  value = "${data.aws_vpc.all.ids}"
 }
 
 # Now look up details for each subnet
 
 data "aws_vpc" "filtered_vpc" {
-  count = "${length(aws_vpc_ids.all.ids)}"
- id    = "${data.aws_vpc_ids.all.ids[count.index]}"
+  count = "${length(aws_vpc.all.ids)}"
+ id    = "${data.aws_vpc.all.ids[count.index]}"
   filter {
     name   = "tag:owner"
     values = ["*NetOps*"]
@@ -33,7 +33,7 @@ data "aws_vpc" "filtered_vpc" {
 resource "aws_subnet" "pub" {
   for_each                                    = var.mod-pubsub # Name - CDIR map
   cidr_block                                  = each.value
-  vpc_id                                      = data.aws_vpc_ids.all.ids[count.index]
+  vpc_id                                      = data.aws_vpc.all.ids[count.index]
   map_public_ip_on_launch                     = true
   availability_zone                           = data.aws_availability_zones.available.names[0]
   enable_resource_name_dns_a_record_on_launch = true
@@ -48,7 +48,7 @@ resource "aws_subnet" "pub" {
 # Create private subnets in the same available availability zone
 resource "aws_subnet" "pri" {
   for_each                = var.mod-prisub # Name - CDIR map
-  vpc_id                  = data.aws_vpc_ids.all.ids[count.index]
+  vpc_id                  = data.aws_vpc.all.ids[count.index]
   cidr_block              = each.value
   map_public_ip_on_launch = false
   availability_zone       = data.aws_availability_zones.available.names[0]
@@ -60,8 +60,3 @@ resource "aws_subnet" "pri" {
   }
 }
 
-output "vpclistout" {
-  value = {
-    owner   = var.mod-tags["owner"]
-   }
-}
