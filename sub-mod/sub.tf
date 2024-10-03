@@ -5,8 +5,7 @@ data "aws_availability_zones" "available" {
 
 data "aws_vpc" "vpclist" {
 tags = {
-    Name = "NetServices"
-    owner = "*NetOps*"
+       owner = "NetOps*"
     }
 
 /*filter {
