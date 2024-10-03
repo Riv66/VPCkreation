@@ -27,7 +27,7 @@ resource "aws_subnet" "pub" {
 # Create private subnets in the same available availability zone
 resource "aws_subnet" "pri" {
   for_each                = var.mod-prisub # Name - CDIR map
-  vpc_id                  = data.aws_vpc.vpclist.vpc_id[0]
+  vpc_id                  = data.aws_vpc.vpclist.vpc_id
   cidr_block              = each.value
   map_public_ip_on_launch = false
   availability_zone       = data.aws_availability_zones.available.names[0]
