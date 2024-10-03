@@ -4,7 +4,7 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_vpc" "vpclist" {
-    cidr_block = var.mod-cdir
+    cidr_block = var.mod-cdir1
 }
 
 # Create public subnets in the first available availability zone

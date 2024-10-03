@@ -8,7 +8,7 @@ variable "mod-prisub" {
     type        = map(any)
 }
 
-variable "mod-cdir" {
+variable "mod-cdir1" {
   description = "Var passed from root"
   type        = string
 }
