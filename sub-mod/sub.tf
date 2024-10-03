@@ -40,3 +40,9 @@ resource "aws_subnet" "pri" {
     service = var.mod-tags["service"]
   }
 }
+
+output "vpclistout" {
+  value = {
+    owner   = var.mod-tags["owner"]
+   }
+}
