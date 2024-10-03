@@ -7,12 +7,12 @@ data "aws_vpc" "vpclist" {
 tags = {
     Name = "NetServices"
     }
-/*
+
 filter {
     name   = "tag:owner"
     values = ["*NetOps*"]
   }
-  */
+
 }
 
 output "aws_vpc" {
@@ -36,7 +36,7 @@ data "aws_vpc" "filtered_vpc" {
 resource "aws_subnet" "pub" {
   for_each                                    = var.mod-pubsub # Name - CDIR map
   cidr_block                                  = each.value
-  vpc_id                                      = data.aws_vpc.vpclist.ids[0]
+  vpc_id                                      = data.aws_vpc.vpclist.id
   map_public_ip_on_launch                     = true
   availability_zone                           = data.aws_availability_zones.available.names[0]
   enable_resource_name_dns_a_record_on_launch = true
