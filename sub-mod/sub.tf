@@ -11,6 +11,12 @@ data "aws_vpc" "vpclist" {
   }*/
 
   filter {
+    name   = "tag:Name"
+    values = ["NetServices"]
+  }
+}
+
+  filter {
     name   = "isDefault"
     values = ["false"]
   }
