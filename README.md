@@ -1,4 +1,4 @@
-Creates:
+Modules to create:
   VPC,
   Subnet(s),
   Public Route Table,
