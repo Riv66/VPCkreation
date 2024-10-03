@@ -10,7 +10,7 @@ resource "aws_internet_gateway" "igw" {
 
 #add default route to igw 
 resource "aws_route" "rtIGW" {
-  route_table_id         = aws_route_table.pub-rt.id
+  route_table_id         = data.aws_route_table.rtlist.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.igw.id
 
