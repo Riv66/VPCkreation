@@ -4,7 +4,7 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_vpc" "vpclist" {
-tags {
+tags = {
     Name = "NetServices"
     }
 /*
