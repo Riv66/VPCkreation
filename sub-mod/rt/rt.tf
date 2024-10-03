@@ -2,7 +2,7 @@
 resource "aws_route_table" "pub-rt" {
   vpc_id = aws_vpc.vpclist.id
   tags = {
-    tier    = "Private"
+    tier    = "Public"
     name    = "${var.mod-vpcname}-pubRT"
     owner   = var.mod-tags["owner"]
     service = var.mod-tags["service"]

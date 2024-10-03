@@ -6,5 +6,12 @@ data "aws_vpc" "vpclist" {
     name   = "tag:Name"
     values = ["${var.mod-vpcname}"]
   }
+}
 
+data "aws_route_table" "rtlist" {
+
+  filter {
+    name   = "tag:tier"
+    values = ["Public"]
+  }
 }
