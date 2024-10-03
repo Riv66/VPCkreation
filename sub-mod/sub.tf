@@ -20,7 +20,7 @@ data "aws_vpc" "vpclist" {
     name   = "isDefault"
     values = ["false"]
   }
-}
+
 
 output "aws_vpc" {
   value = "${data.aws_vpc.vpclist.id}"
