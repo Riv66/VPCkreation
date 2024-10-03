@@ -9,8 +9,8 @@ data "aws_vpc" "vpclist" {
     }
 }
  data "aws_vpc" "all" {
-  vpc_id = "${data.aws_vpc.vpclist.id}"
-}
+  vpc_id = "${aws_vpc.vpclist.vpc_id}"
+ }
     
 output "aws_vpc" {
   value = "${data.aws_vpc.all.ids}"
