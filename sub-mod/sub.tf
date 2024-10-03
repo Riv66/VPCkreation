@@ -14,14 +14,14 @@ data "aws_vpc" "vpclist" {
 # to test filter
   filter {
     name   = "tag:Name"
-    values = ["NetServices"]
+    values = ["${var.mod-vpcname}"]
   }
 
   # to test filter
-  filter {
+ /*filter {
     name   = "isDefault"
     values = ["false"]
-  }
+  }*/
 }
 
 output "aws_vpc" {
