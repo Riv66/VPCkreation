@@ -4,10 +4,18 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_vpc" "vpclist" {
-filter {
-    name   = "cdir-block"
+
+  filter {
+    name   = "cidr-block"
     values = ["10.10.0.0/16"]
   }
+
+  filter {
+    name   = "isDefault"
+    values = ["false"]
+  }
+}
+
 }
 
 output "aws_vpc" {
