@@ -17,11 +17,11 @@ data "aws_vpc" "vpclist" {
     values = ["${var.mod-vpcname}"]
   }
 
-  # to test filter
- /*filter {
+  # filter tested ok as option
+ filter {
     name   = "isDefault"
     values = ["false"]
-  }*/
+  }
 }
 
 output "aws_vpc" {
