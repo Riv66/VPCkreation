@@ -8,7 +8,7 @@ data "aws_vpc" "vpclist" {
     Name = "NetServices"
     }
 }
-     "aws_vpc_ids" "all" {
+ data "aws_vpc_ids" "all" {
   vpc_id = "${data.aws_vpc.vpclist.id}"
 }
     
