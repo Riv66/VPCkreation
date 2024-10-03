@@ -43,8 +43,8 @@ resource "aws_subnet" "pub" {
   tags = {
     tier    = "Public"
     name    = each.key
-    owner   = var.tags["owner"]
-    service = var.tags["service"]
+    owner   = var.mod-tags["owner"]
+    service = var.mod-tags["service"]
   }
 }
 
