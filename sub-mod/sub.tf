@@ -4,8 +4,8 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_vpc" "vpclist" {
-  filter {
-owner = var.mod-tags["owner"]
+  name   = "tag:owner"
+   values = var.mod-tags["owner"]
 }
 
 # Create public subnets in the first available availability zone
