@@ -5,8 +5,8 @@ data "aws_availability_zones" "available" {
 
 data "aws_vpc" "vpclist" {
   filter {
-name = "cidr_block"
-values = ["10.10.0.0/16"]
+name = "vpcname"
+value = ["NetServices"]
   }
     }
 
