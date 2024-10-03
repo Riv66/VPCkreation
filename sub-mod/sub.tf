@@ -4,7 +4,7 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_vpc" "vpclist" {
-  filter = {
+  filter {
 cidr_block = var.mod-cdir
   }
     }
