@@ -5,16 +5,19 @@ data "aws_availability_zones" "available" {
 
 data "aws_vpc" "vpclist" {
 
+# to test input to filter
   filter {
     name   = "cidr-block"
-    values = ["10.10.0.0/16"]
+    values = ["${var.mod-cdir}"]
   }
 
+# to test filter
   filter {
     name   = "tag:Name"
     values = ["NetServices"]
   }
 
+  # to test filter
   filter {
     name   = "isDefault"
     values = ["false"]
