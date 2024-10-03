@@ -6,3 +6,12 @@ resource "aws_internet_gateway" "igw" {
     service = var.mod-tags["service"]
   }
 }
+
+
+#add default route to igw 
+resource "aws_route" "rtIGW" {
+  route_table_id         = aws_route_table.pub-rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.igw.id
+
+}
