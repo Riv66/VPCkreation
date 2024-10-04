@@ -17,7 +17,7 @@ data "aws_vpc" "vpclist" {
  filter {
     name   = "tag:owner"
    #values = ["tag:NetOps1"]
-   values = ["${var.mod-tags}"]
+   values = ["${var.mod-tags["owner"]}"]
     }
 }
 
