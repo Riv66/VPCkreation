@@ -1,10 +1,15 @@
 resource "aws_vpc" "vpc" {
   cidr_block = var.mod-cdir
-  tags = {
+ 
+  # test alt
+   Name =  "${var.mod-vpcname}"
+   tags = var.mod_tags
+   
+   /*tags = {
     name    = "${var.mod-vpcname}"
     owner   = "NetOps1"
     service = "Networking"
-  }
+  }*/
 }
 
 output "VPC_ID" {
