@@ -9,5 +9,8 @@ variable "mod-vpcname" {
   type        = string
 }
 
-
+variable "mod-tags" {
+  description = "Var passed from root"
+    type        = map(any)
+}
 
