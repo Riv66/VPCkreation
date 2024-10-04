@@ -1,12 +1,12 @@
 Creates resources based on var Design paramaters inputs
-  "Enter VPC Name:"
-  "Enter VPC CDIR:"
-  "Enter VPC Name & CDIR:"
-  "Enter VPC Name &  CDIR:"
-  "Enter Resource Tags:"
-  "Enter EC2 Key Pair Name:"
+  VPC Name
+  VPC CDIR
+  pub sub Name(s) & CDIR(s)
+  pri sub Name(s) & CDIR(s)
+  Resource Tags
+  EC2 Key Pair Name
 
-and the following modules:
+with the following modules:
   VPC:
   Sub:
     Pub & Pri subnet(s)
