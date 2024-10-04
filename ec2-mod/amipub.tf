@@ -4,9 +4,9 @@ resource "aws_ami_from_instance" "example" {
   source_instance_id = aws_instance.webserver.id
      tags = {
     tier    = "Public"
-    name = "${var.tags["owner"]}-WebserverAMI"
-    owner   = var.tags["owner"]
-    service = var.tags["service"]
+    name = "${var.mod-tags["owner"]}-WebserverAMI"
+    owner   = var.mod-tags["owner"]
+    service = var.mod-tags["service"]
  }
   
   depends_on = [
