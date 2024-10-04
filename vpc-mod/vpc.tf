@@ -2,7 +2,7 @@ resource "aws_vpc" "vpc" {
   cidr_block = var.mod-cdir
  
   # test alt
-   Name =  "${var.mod-vpcname}"
+   Name =  ["${var.mod-vpcname}"]
    tags = var.mod-tags
    
    /*tags = {
