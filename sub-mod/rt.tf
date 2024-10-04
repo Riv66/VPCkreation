@@ -1,6 +1,6 @@
 # create pub rt
 resource "aws_route_table" "pub-rt" {
-  vpc_id = aws_vpc.vpclist.id
+  vpc_id = data.aws_vpc.vpclist.id
   tags = {
     tier    = "Public"
     name    = "${var.mod-vpcname}-pubRT"
@@ -11,7 +11,7 @@ resource "aws_route_table" "pub-rt" {
 
 #create priv rt
 resource "aws_route_table" "pri-rt" {
-  vpc_id = aws_vpc.vpclist.id
+  vpc_id = data.aws_vpc.vpclist.id
   tags = {
     tier    = "Private"
     name    = "${var.mod-vpcname}-priRT"
