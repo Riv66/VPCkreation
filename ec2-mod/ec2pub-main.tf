@@ -30,6 +30,3 @@ resource "aws_ami_from_instance" "example" {
   ]
 }
 
-output "WebServer_ip_addr" {
-  value = aws_instance.webserver.public_ip
-}
