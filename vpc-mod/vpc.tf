@@ -3,7 +3,7 @@ resource "aws_vpc" "vpc" {
  
   # test alt
    Name =  "${var.mod-vpcname}"
-   tags = var.mod_tags
+   tags = var.mod-tags
    
    /*tags = {
     name    = "${var.mod-vpcname}"
