@@ -9,3 +9,8 @@ output "PrivateSubList" {
 # provide message when list initially empty 
 value = length(data.aws_subnets.prisublist.ids) > 0 ? data.aws_subnets.prisublist.ids :[ "No subnets created", "to list yet!"] # IDs is list of strings
 }
+
+
+output "WebServer_ip_addr" {
+  value = aws_instance.webserver.public_ip
+}
