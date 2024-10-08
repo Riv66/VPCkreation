@@ -11,7 +11,7 @@ data "aws_vpc" "vpclist" {
     values = ["${var.mod-cdir}"]
   }
 
-
+/*
 # to test filter
   filter {
     name   = "tag:Name"
@@ -23,4 +23,6 @@ data "aws_vpc" "vpclist" {
     name   = "isDefault"
     values = ["false"]
   }
+*/
 }
+
