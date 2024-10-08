@@ -10,7 +10,8 @@ data "aws_vpc" "vpclist" {
     name   = "cidr-block"
     values = ["${var.mod-cdir}"]
   }
-}
+
+
 # to test filter
   filter {
     name   = "tag:Name"
