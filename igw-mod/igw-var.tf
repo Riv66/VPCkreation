@@ -8,3 +8,7 @@ variable "mod-vpcname" {
     type        = string
 }
 
+variable "mod-vpccdir" {
+  description = "Var passed from root"
+    type        = string
+}
