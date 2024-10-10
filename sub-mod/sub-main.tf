@@ -3,6 +3,9 @@ locals {
   total_azs         = min(var.mod-az_count, length(data.aws_availability_zones.available.names))
   total_public_subnets  = var.mod-public_subnet_count * local.total_azs  # Total public subnets
   total_private_subnets = var.mod-private_subnet_count * local.total_azs  # Total private subnets
+   depends_on = [
+    aws_vpc.vpc
+  ]
 }
 
 # Create public subnets in each AZ
