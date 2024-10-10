@@ -25,7 +25,8 @@ resource "aws_subnet" "pri" {
   availability_zone = data.aws_availability_zones.available.names[count.index % var.mod-az_count]
 
   tags = {
-    Name = "${var.mod-vpcname}-Pri_Sub-${count.index + 1}"
+    tier    = "Private"
+    name = "${var.mod-vpcname}-Pri_Sub-${count.index + 1}"
      owner   = var.mod-tags["owner"]
     service = var.mod-tags["service"]
   }
