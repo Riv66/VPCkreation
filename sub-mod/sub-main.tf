@@ -4,7 +4,7 @@ locals {
   total_public_subnets  = var.mod-public_subnet_count * local.total_azs  # Total public subnets
   total_private_subnets = var.mod-private_subnet_count * local.total_azs  # Total private subnets
    depends_on = [
-    data.aws_vpc.vpclist
+    aws_availability_zones.available
   ]
 }
 
