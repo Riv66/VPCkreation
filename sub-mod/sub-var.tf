@@ -22,8 +22,13 @@ variable "mod-vpcname" {
     type        = string
 }
 
-
 variable "mod-azs" {
   description = "Enter EC2 Key Pair Name:"
 type = number
 }
+
+variable "mod-region" {
+  description = "Enter Region:"
+type = number
+}
+
