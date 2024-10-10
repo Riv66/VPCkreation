@@ -16,6 +16,22 @@ resource "aws_subnet" "pub" {
 }
 
 # Create private subnets in the same available availability zone
+
+# Create private subnets based on the number of private subnets and AZs
+resource "aws_subnet" "pri" {
+  count = var.mod-private_subnet_count
+ vpc_id                  = data.aws_vpc.vpclist.id
+  cidr_block        = cidrsubnet(data.aws_vpc.vpclist.cidr_block, 8, count.index + var.mod-public_subnet_count)  # Shift CIDR for private subnets
+  availability_zone = data.aws_availability_zones.available.names[count.index % var.mod-az_count]
+
+  tags = {
+    Name = "${var.mod-vpcname}-Pri_Sub-${count.index + 1}"
+     owner   = var.mod-tags["owner"]
+    service = var.mod-tags["service"]
+  }
+}
+
+/*
 resource "aws_subnet" "pri" {
   #for_each                = var.mod-prisub # map
   count = var.mod-azs
@@ -35,4 +51,4 @@ resource "aws_subnet" "pri" {
     service = var.mod-tags["service"]
   }
 }
-
+*/
