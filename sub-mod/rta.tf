@@ -11,7 +11,7 @@ for_each = aws_subnet.pub
 
 #Create rt association for pri subnet
 resource "aws_route_table_association" "rapri" {
-for_each = aws_subnet.pri
+for_each = aws_subnet.pri.subnet_id
         subnet_id      = each.value.id
   route_table_id = aws_route_table.pri-rt.id
   depends_on = [
