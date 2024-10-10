@@ -19,7 +19,7 @@ resource "aws_subnet" "pub" {
 
 # Create private subnets based on the number of private subnets and AZs
 resource "aws_subnet" "pri" {
-  count = var.mod-private_subnet_count
+  count = var.mod-private_subnet_count*var.mod-az_count
  vpc_id                  = data.aws_vpc.vpclist.id
   cidr_block        = cidrsubnet(data.aws_vpc.vpclist.cidr_block, 8, count.index + var.mod-public_subnet_count)  # Shift CIDR for private subnets
   availability_zone = data.aws_availability_zones.available.names[count.index % var.mod-az_count]
