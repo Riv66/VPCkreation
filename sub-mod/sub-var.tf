@@ -29,6 +29,6 @@ type = number
 
 variable "mod-region" {
   description = "Enter Region:"
-type = number
+type = string
 }
 
