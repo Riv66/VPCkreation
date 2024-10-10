@@ -27,8 +27,8 @@ resource "aws_subnet" "pub" {
 resource "aws_subnet" "pri" {
   count = local.total_private_subnets
   vpc_id            = data.aws_vpc.vpclist.id
-  cidr_block        = cidrsubnet(var.vpc_cidr, 8, count.index + local.total_public_subnets)  # Offset for private subnets
-  availability_zone = element(data.aws_availability_zones.available.names, floor(count.index / var.private_subnet_count_per_az))
+  cidr_block        = cidrsubnet(data.aws_vpc.vpclist.cidr_block, 8, count.index + local.total_public_subnets)  # Offset for private subnets
+  availability_zone = element(data.aws_availability_zones.available.names, floor(count.index / var.mod-private_subnet_count))
  tags = {
     tier    = "Private"
     name = "${var.mod-vpcname}-Pri_Sub-${count.index + 1}"
