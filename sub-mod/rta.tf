@@ -1,8 +1,8 @@
 
 #Create rt association for public subnets using for_each
 resource "aws_route_table_association" "rapub" {
-for_each = aws_subnet.pub
-  subnet_id      = each.value.id
+count = var.mod-public_subnet_count
+  subnet_id      = aws_subnet.pub[count.index].id 
     route_table_id = aws_route_table.pub-rt.id
   depends_on = [
     aws_subnet.pub
