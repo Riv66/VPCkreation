@@ -1,8 +1,8 @@
 # Local values for subnet distribution
 locals {
-  total_azs         = min(var.mod-az_count, length(data.aws_availability_zones.available.names))
-  total_public_subnets  = var.mod-public_subnet_count * local.total_azs  # Total public subnets
-  total_private_subnets = var.mod-private_subnet_count * local.total_azs  # Total private subnets
+ # total_azs         = min(var.mod-az_count, length(data.aws_availability_zones.available.names))
+  total_public_subnets  = var.mod-public_subnet_count * var.mod-total_azs  # Total public subnets
+  total_private_subnets = var.mod-private_subnet_count * var.mod-total_azs  # Total private subnets
    depends_on = [
     data.aws_availability_zones.available
   ]
