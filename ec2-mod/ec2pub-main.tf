@@ -1,7 +1,7 @@
 resource "aws_instance" "webserver" {
   ami           = data.aws_ami.amzn-linux-2023-ami.id
   instance_type = "t2.micro"
-  subnet_id = data.aws_subnets.pubsublist.ids[1]
+  subnet_id = data.aws_subnets.pubsublist.id
   key_name               = var.mod-keyp
   vpc_security_group_ids = ["${aws_security_group.pubSG.id}"]
   user_data              = <<-EOF

@@ -4,15 +4,13 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_vpc" "vpclist" {
-
-# to test input to filter
   filter {
     name   = "cidr-block"
     values = ["${var.mod-cdir}"]
   }
 
 /*
-# to test filter
+# other options to test 
   filter {
     name   = "tag:Name"
     values = ["${var.mod-vpcname}"]

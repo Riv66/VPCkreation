@@ -1,3 +1,11 @@
+# Local values for subnet distribution
+locals {
+  total_azs         = min(var.mod-az_count, length(data.aws_availability_zones.available.names))
+  total_public_subnets  = var.mod-public_subnet_count * local.total_azs  # Total public subnets
+  total_private_subnets = var.mod-private_subnet_count * local.total_azs  # Total private subnets
+}
+
+
 # Create public subnets in the first available availability zone
 
 resource "aws_subnet" "pub" {
@@ -15,8 +23,22 @@ resource "aws_subnet" "pub" {
   }
 }
 
-# Create private subnets in the same available availability zone
+# Create private subnets in each AZ
+resource "aws_subnet" "pri" {
+  count = local.total_private_subnets
+  vpc_id            = data.aws_vpc.vpclist.id
+  cidr_block        = cidrsubnet(var.vpc_cidr, 8, count.index + local.total_public_subnets)  # Offset for private subnets
+  availability_zone = element(data.aws_availability_zones.available.names, floor(count.index / var.private_subnet_count_per_az))
+ tags = {
+    tier    = "Private"
+    name = "${var.mod-vpcname}-Pri_Sub-${count.index + 1}"
+     owner   = var.mod-tags["owner"]
+    service = var.mod-tags["service"]
 
+  }
+}
+
+/*
 # Create private subnets based on the number of private subnets and AZs
 resource "aws_subnet" "pri" {
   count = var.mod-private_subnet_count*var.mod-az_count
