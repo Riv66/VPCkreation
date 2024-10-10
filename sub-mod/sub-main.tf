@@ -5,7 +5,44 @@ locals {
   total_private_subnets = var.mod-private_subnet_count * local.total_azs  # Total private subnets
 }
 
+# Create public subnets in each AZ
+resource "aws_subnet" "pub" {
+  count = local.total_public_subnets
 
+  vpc_id            = data.aws_vpc.vpclist.id
+  cidr_block        = cidrsubnet(data.aws_vpc.vpclist.cidr_block, 8, count.index)  # Unique CIDR for each subnet
+  availability_zone = element(data.aws_availability_zones.available.names, floor(count.index / var.mod-public_subnet_count))
+
+  map_public_ip_on_launch = true
+  enable_resource_name_dns_a_record_on_launch = true
+
+tags = {
+    tier    = "Public"
+    name = "${var.mod-vpcname}-Pub_Sub-${count.index + 1}"
+     owner   = var.mod-tags["owner"]
+    service = var.mod-tags["service"]
+
+  }
+}
+
+# Create private subnets in each AZ
+resource "aws_subnet" "pri" {
+  count = local.total_private_subnets
+  
+  vpc_id            = data.aws_vpc.vpclist.id
+  cidr_block        = cidrsubnet(data.aws_vpc.vpclist.cidr_block, 8, count.index + local.total_public_subnets)  # Offset for private subnets
+  availability_zone = element(data.aws_availability_zones.available.names, floor(count.index / var.mod-private_subnet_count))
+ 
+ tags = {
+    tier    = "Private"
+    name = "${var.mod-vpcname}-Pri_Sub-${count.index + 1}"
+     owner   = var.mod-tags["owner"]
+    service = var.mod-tags["service"]
+
+  }
+}
+
+/*
 # Create public subnets in the first available availability zone
 
 resource "aws_subnet" "pub" {
@@ -23,20 +60,6 @@ resource "aws_subnet" "pub" {
   }
 }
 
-# Create private subnets in each AZ
-resource "aws_subnet" "pri" {
-  count = local.total_private_subnets
-  vpc_id            = data.aws_vpc.vpclist.id
-  cidr_block        = cidrsubnet(data.aws_vpc.vpclist.cidr_block, 8, count.index + local.total_public_subnets)  # Offset for private subnets
-  availability_zone = element(data.aws_availability_zones.available.names, floor(count.index / var.mod-private_subnet_count))
- tags = {
-    tier    = "Private"
-    name = "${var.mod-vpcname}-Pri_Sub-${count.index + 1}"
-     owner   = var.mod-tags["owner"]
-    service = var.mod-tags["service"]
-
-  }
-}
 
 /*
 # Create private subnets based on the number of private subnets and AZs
