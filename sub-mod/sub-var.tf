@@ -22,3 +22,8 @@ variable "mod-vpcname" {
     type        = string
 }
 
+
+variable "mod-azs" {
+  description = "Enter EC2 Key Pair Name:"
+type = number
+}
