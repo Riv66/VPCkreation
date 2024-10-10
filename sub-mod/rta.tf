@@ -11,8 +11,8 @@ for_each = aws_subnet.pub
 
 #Create rt association for pri subnet using count 
 resource "aws_route_table_association" "rapri" {
-count = var.mod-azs
-         subnet_id     = aws_subnet.pri[count.index].id  # Use the first private subnet
+count = var.mod-private_subnet_count
+         subnet_id     = aws_subnet.pri[count.index].id  
   route_table_id = aws_route_table.pri-rt.id
   depends_on = [
     aws_subnet.pri
