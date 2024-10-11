@@ -9,18 +9,19 @@ data "aws_vpc" "vpclist" {
     values = ["${var.mod-cdir}"]
   }
 
+ # filter tested ok as option
+ filter {
+    name   = "isDefault"
+    values = ["false"]
+  }
+
 /*
 # other options to test 
   filter {
     name   = "tag:Name"
     values = ["${var.mod-vpcname}"]
   }
-
-  # filter tested ok as option
- filter {
-    name   = "isDefault"
-    values = ["false"]
-  }
 */
+
 }
 
