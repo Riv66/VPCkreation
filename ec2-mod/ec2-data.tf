@@ -8,7 +8,6 @@ data "aws_vpc" "vpclist" {
 }
 
   data "aws_subnets" "pubsublist" {
-
   filter {
     name   = "tag:tier"
    values = ["Public"]
