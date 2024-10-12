@@ -16,7 +16,7 @@ resource "aws_route_table_association" "rapri" {
 #count = var.mod-private_subnet_count * var.mod-az_count
  #        subnet_id     = aws_subnet.pri[count.index].id  
    for_each = aws_subnet.pri
-  subnet_id = each.value.subnet_id
+  subnet_id = each.value.id
     route_table_id = aws_route_table.pri-rt.id
   depends_on = [
     aws_subnet.pri
