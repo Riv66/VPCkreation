@@ -4,7 +4,7 @@ resource "aws_instance" "nat_instance" {
 
   ami                         = data.aws_ami.nat-ami.id
   instance_type               = "t2.micro"
-  subnet_id                   = data.aws_subnets.pubsublist.subnet_id
+  subnet_id                   = data.aws_subnets.pubsublist.id
   key_name                    = var.mod-keyp
   associate_public_ip_address = true
   source_dest_check            = false # Disable source/destination check for NAT
