@@ -28,7 +28,7 @@ variable "mod-vpcname" {
     type        = string
 }
 
-variable "mod-azs" {
+variable "mod-az_count" {
   description = "Var passed from root"
     type        = number
 }
