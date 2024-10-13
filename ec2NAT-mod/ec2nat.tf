@@ -1,6 +1,6 @@
 # Create NAT Instances in Public Subnets
 resource "aws_instance" "nat_instance" {
-  count = length(data.aws_subnets.pubsublist.ids)
+  count = var.mod-azs
 
   ami                         = data.aws_ami.nat-ami.id
   instance_type               = "t2.micro"
